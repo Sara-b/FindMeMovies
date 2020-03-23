@@ -1,0 +1,149 @@
+﻿
+@{
+    Layout = null;
+}
+@model MoodMovie.ViewModels.MoviesViewModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Find a movie !</title>
+
+    <!-- Google fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- font awesome -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="~/Content/assets/bootstrap/css/bootstrap.min.css" />
+
+    <!-- animate.css -->
+    <link rel="stylesheet" href="~/Content/assets/animate/animate.css" />
+    <link rel="stylesheet" href="~/Content/assets/animate/set.css" />
+
+    <!-- gallery -->
+    <link rel="stylesheet" href="~/Content/assets/gallery/blueimp-gallery.min.css">
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="~/Content/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="~/Content/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="~/Content/assets/style.css">
+
+    <script type="text/javascript">
+          var appInsights=window.appInsights||function(config){
+            function r(config){t[config]=function(){var i=arguments;t.queue.push(function(){t[config].apply(t,i)})}}var t={config:config},u=document,e=window,o="script",s=u.createElement(o),i,f;for(s.src=config.url||"//az416426.vo.msecnd.net/scripts/a/ai.0.js",u.getElementsByTagName(o)[0].parentNode.appendChild(s),t.cookie=u.cookie,t.queue=[],i=["Event","Exception","Metric","PageView","Trace"];i.length;)r("track"+i.pop());return r("setAuthenticatedUserContext"),r("clearAuthenticatedUserContext"),config.disableExceptionTracking||(i="onerror",r("_"+i),f=e[i],e[i]=function(config,r,u,e,o){var s=f&&f(config,r,u,e,o);return s!==!0&&t["_"+i](config,r,u,e,o),s}),t
+            }({
+                instrumentationKey:"30a1e87f-f509-4824-8e2b-1f7bd7479118"
+            });
+
+            window.appInsights=appInsights;
+            appInsights.trackPageView();
+    </script>
+
+</head>
+<body>
+    <div class="topbar animated fadeInLeftBig"></div>
+
+    <!-- Header Starts -->
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <div class="navbar navbar-default navbar-fixed-top" role="navigation" id="top-nav">
+                <div class="container">
+                    <div class="navbar-header">
+                        <!-- Logo Starts -->
+                        <a class="navbar-brand" onclick="location.href='@Url.Action("Index", "Home")'" href=""><img src="~/Content/images/logo.png" alt="logo">Find me a movie !</a>
+                        <!-- #Logo Ends -->
+
+
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+
+                    </div>
+
+
+                    <!-- Nav Starts -->
+                    <div class="navbar-collapse  collapse">
+                        <ul class="nav navbar-nav navbar-right scroll">
+                            <li onclick="location.href='@Url.Action("Index", "Home")'" class="active"><a href="">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                        </ul>
+                    </div>
+                    <!-- #Nav Ends -->
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- #Header Starts -->
+    <!-- works -->
+    <div id="works" class="movies clearfix grid">
+
+        @foreach (var movie in Model.Movies)
+            {
+                <figure class="effect-oscar  wowload fadeIn">
+                    @if (!string.IsNullOrWhiteSpace(movie.Backdrop_path))
+                    {
+                            <img src="@(Model.imageBaseUrl+movie.Backdrop_path)" alt="img01" />
+                        }
+                        else
+                        {
+                            <img src="~/Content/images/portfolio/black.jpg" alt="img01" />
+                        }
+                        <figcaption>
+                            <h4 class="movie_title">@movie.Title</h4>
+                            <p>
+                                <a href="@Url.Action("Details", "Movies", new { id = movie.Id })">Show details !</a>
+                            </p>
+                        </figcaption>
+                </figure>
+            }
+    </div>
+
+
+
+    <!-- Footer Starts -->
+    <div id="about" class="footer text-center spacer">
+        Don't know what to watch ? Just choose a category and the best and more popular movies of it would appear to your eyes !<br />
+        <br />
+        Sara Brin - Ingésup Bordeaux
+        <br /><br />
+        Using TMDb Api
+    </div>
+    <!-- # Footer Ends -->
+    <a href="#works" class="gototop "><i class="fa fa-angle-up  fa-3x"></i></a>
+    
+
+    <!-- jquery -->
+    <script src="~/Content/assets/jquery.js"></script>
+
+    <!-- wow script -->
+    <script src="~/Content/assets/wow/wow.min.js"></script>
+
+
+    <!-- boostrap -->
+    <script src="~/Content/assets/bootstrap/js/bootstrap.js" type="text/javascript"></script>
+
+    <!-- jquery mobile -->
+    <script src="~/Content/assets/mobile/touchSwipe.min.js"></script>
+    <script src="~/Content/assets/respond/respond.js"></script>
+
+    <!-- gallery -->
+    <script src="~/Content/assets/gallery/jquery.blueimp-gallery.min.js"></script>
+
+    <!-- custom script -->
+    <script src="~/Content/assets/script.js"></script>
+
+</body>
+
+</html>
